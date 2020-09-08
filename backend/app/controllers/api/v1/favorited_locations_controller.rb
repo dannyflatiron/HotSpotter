@@ -1,5 +1,5 @@
 class Api::V1::FavoritedLocationsController < ApplicationController
-  before_action :set_favorited_location
+  before_action :set_favorited_location, only: [:show, :update, :destroy]
 
   # GET /favorited_locations
   def index
