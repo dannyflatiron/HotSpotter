@@ -5,9 +5,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import currentUser from './reducers/currentUser'
+import loginForm from './reducers/loginForm'
 
 const reducer = combineReducers({
-    currentUser
+    currentUser,
+    loginForm
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
