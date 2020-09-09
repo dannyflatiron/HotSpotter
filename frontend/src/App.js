@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { connect } from 'react-redux'
 
 
 class App extends React.Component {
@@ -14,7 +15,13 @@ class App extends React.Component {
   }
 }
 
-export default GoogleApiWrapper({
+const mapStateToProps = (state) => {
+
+}
+
+const WrappedContainer = GoogleApiWrapper({
   apiKey: (process.env.REACT_APP_API_KEY)
-})(App);
+})(App)
+
+export default connect(mapStateToProps)(WrappedContainer)
  
