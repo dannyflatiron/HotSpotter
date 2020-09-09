@@ -9,15 +9,16 @@ export const login = loginFormData => {
     console.log("loginFormData", loginFormData)
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(loginFormData)
+        credentials: "include",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(loginFormData)
         })
         .then(response => response.json())
         .then(user => {
-            if (user.errors) {
+            if (user.error) {
                 alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
@@ -30,6 +31,7 @@ export const login = loginFormData => {
 export const getCurrentUser = () => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/get_current_user", {
+            credentials: "include",
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
