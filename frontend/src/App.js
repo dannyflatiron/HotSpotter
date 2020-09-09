@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { connect } from 'react-redux'
+import Login from "./components/Login.js"
 
 
 class App extends React.Component {
@@ -9,7 +10,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Map google={this.props.google} />
+        <Login />
+        {/* <Map google={this.props.google} /> */}
       </div>
     )
   }
