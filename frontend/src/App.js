@@ -16,11 +16,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
+  return {
+    
+  }
 }
 
 const WrappedContainer = GoogleApiWrapper({
-  apiKey: (process.env.REACT_APP_API_KEY)
+  // apiKey: (process.env.REACT_APP_API_KEY)
 })(App)
 
 export default connect(mapStateToProps)(WrappedContainer)
