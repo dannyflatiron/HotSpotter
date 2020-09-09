@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :favorited_locations
-  resources :reviews
+  get "/api/v1/login", to: "sessions#create"
 
 
   namespace :api do
