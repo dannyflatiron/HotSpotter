@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 
 class App extends React.Component {
@@ -14,11 +15,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        App
+        <Map google={this.props.google} />
       </div>
     )
   }
 }
 
-export default App;
+export default GoogleApiWrapper({
+  apiKey: ('AIzaSyC1uMnF0nd-1kIbogZpBJ2CTk2cxdknAtI')
+})(App);
  
