@@ -10,7 +10,7 @@ class Api::V1::FavoritedLocationsController < ApplicationController
 
   # GET /favorited_locations/1
   def show
-    render json: favorited_location
+    render json: @favorited_location
   end
 
   # POST /favorited_locations
@@ -26,10 +26,10 @@ class Api::V1::FavoritedLocationsController < ApplicationController
 
   # PATCH/PUT /favorited_locations/1
   def update
-    if favorited_location.update(favorited_location_params)
-      render json: favorited_location
+    if @favorited_location.update(favorited_location_params)
+      render json: @favorited_location
     else
-      render json: favorited_location.errors, status: :unprocessable_entity
+      render json: @favorited_location.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +41,7 @@ class Api::V1::FavoritedLocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorited_location
-      favorited_location = FavoritedLocation.find(params[:id])
+      @favorited_location = FavoritedLocation.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

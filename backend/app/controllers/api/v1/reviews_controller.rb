@@ -8,7 +8,7 @@ class Api::V1::ReviewsController < ApplicationController
     end
 
     def show
-        render json: review
+        render json: @review
     end
 
     def create
@@ -22,10 +22,10 @@ class Api::V1::ReviewsController < ApplicationController
     end
 
     def update
-        if review.update(review_params)
-            render json: review
+        if @review.update(review_params)
+            render json: @review
         else
-            render json: review.errors
+            render json: @review.errors
         end
     end
 
@@ -38,7 +38,7 @@ class Api::V1::ReviewsController < ApplicationController
     private
 
     def set_review
-        review = Review.find_by(params[:id])
+        @review = Review.find_by(params[:id])
     end
 
     def review_params
