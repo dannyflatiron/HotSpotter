@@ -8,3 +8,4 @@
 danny = User.create(username: "Danny", password: "password")
 Review.create(content:"Hello World! This is a sample test", user: User.first)
 Review.create(content:"Hola!", user: User.first)
+FavoritedLocation.create(name:"Brooklyn", user: User.first)
