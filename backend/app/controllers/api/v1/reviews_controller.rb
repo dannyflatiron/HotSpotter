@@ -3,12 +3,14 @@ class Api::V1::ReviewsController < ApplicationController
     
     def index
         reviews = Review.all
+        reviews_json = ReviewSerializer.new(reviews).serialized_json
 
-        render json: reviews
+        render json: reviews_json
     end
 
     def show
-        render json: @review
+        review_json = ReviewSerializer.new(@review).serialized_json
+        render json: review_json
     end
 
     def create
@@ -38,7 +40,7 @@ class Api::V1::ReviewsController < ApplicationController
     private
 
     def set_review
-        @review = Review.find_by(params[:id])
+        @review = Review.find(params[:id])
     end
 
     def review_params
