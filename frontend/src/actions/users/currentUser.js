@@ -6,7 +6,6 @@ export const setCurrentUser = user => {
 }
 
 export const login = loginFormData => {
-    console.log("loginFormData", loginFormData)
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
         credentials: "include",
@@ -28,20 +27,20 @@ export const login = loginFormData => {
     }
 }
 
+export const clearCurrentUser = () => {
+    return {
+        type: "CLEAR_CURRENT_USER"
+    }
+}
+
 export const logout = () => {
-    return (dispatch) => {
-        dispatch(clearCurrentUser)
+    return dispatch => {
+        dispatch(clearCurrentUser())
         return fetch("http://localhost:3000/api/v1/logout", {
             credentials: "include",
             method: "DELETE",
             }
         )
-    }
-}
-
-export const clearCurrentUser = () => {
-    return {
-        type: "CLEAR_CURRENT_USER"
     }
 }
 
