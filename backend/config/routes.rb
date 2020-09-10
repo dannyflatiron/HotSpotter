@@ -5,12 +5,18 @@ Rails.application.routes.draw do
   delete "/api/v1/logout", to: "api/v1/sessions#destroy"
 
 
-
   namespace :api do
     namespace :v1 do
       resources :users do
         resources :favorited_locations
         resources :reviews
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :reviews do
       end
     end
   end
