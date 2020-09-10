@@ -8,6 +8,12 @@ export const setCurrentUser = user => {
     }
 }
 
+export const clearCurrentUser = () => {
+    return {
+        type: "CLEAR_CURRENT_USER"
+    }
+}
+
 export const login = loginFormData => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
@@ -29,12 +35,6 @@ export const login = loginFormData => {
             }
         })
         .catch(console.log)
-    }
-}
-
-export const clearCurrentUser = () => {
-    return {
-        type: "CLEAR_CURRENT_USER"
     }
 }
 
@@ -61,7 +61,9 @@ export const getCurrentUser = () => {
         .then(response => response.json())
         .then(response => {
             if (response.error) {
-                alert(response.error)
+                // alert(response.error)
+                // removes alert box and removes Error warning message in console
+                return null
             } else {
                 dispatch(setCurrentUser(response.data))
                 dispatch(resetLoginForm())
