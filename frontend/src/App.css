@@ -38,5 +38,10 @@
 }
 
 .nav {
-  display: flex
+  display: inline-flex;
+}
+
+#logged_in {
+  margin: 0;
+  padding: 0
 }
