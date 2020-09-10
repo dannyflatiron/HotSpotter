@@ -3,6 +3,7 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { connect } from 'react-redux'
 import { getCurrentUser } from "../actions/users/currentUser.js"
 import NavBar from "./NavBar.js"
+import Review from "./Review.js"
 import '../App.css';
 
 
@@ -16,7 +17,8 @@ class App extends React.Component {
     return (
     <div className="App">
       <NavBar />
-      <Map google={this.props.google} /> 
+      <Map google={this.props.google} />
+      <Review />
     </div>  
 
     )
