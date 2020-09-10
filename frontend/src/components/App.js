@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
     <div className="App">
       <NavBar />
-      {/* <Map google={this.props.google} /> */}
+      <Map google={this.props.google} /> 
     </div>  
 
     )
