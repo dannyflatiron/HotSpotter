@@ -14,6 +14,30 @@ export const clearCurrentUser = () => {
     }
 }
 
+export const signup = signupFormData => {
+    return dispatch => {
+        return fetch("http://localhost:3000/api/v1/login", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(signupFormData)
+        })
+        .then(response => response.json())
+        .then(user => {
+            if (user.error) {
+                alert(user.error)
+            } else {
+                // dispatch(setCurrentUser(user))
+                // dispatch(getReviews())
+                // dispatch(resetLoginForm())
+            }
+        })
+        .catch(console.log)
+    }
+}
+
 export const login = loginFormData => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
