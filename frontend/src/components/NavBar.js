@@ -7,7 +7,6 @@ const NavBar = ({currentUser}) => {
     return (
         <div className="nav">
             {currentUser ? <><p id="logged_in">Welcome, {currentUser.attributes.username}</p><Logout /></> : null}
-            {currentUser ? <Logout /> : <Login /> }
         </div>
     )
 }
