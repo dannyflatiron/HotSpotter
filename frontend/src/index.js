@@ -6,10 +6,12 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import currentUser from './reducers/currentUser'
 import loginForm from './reducers/loginForm'
+import reviews from './reducers/reviews'
 
 const reducer = combineReducers({
     currentUser,
-    loginForm
+    loginForm,
+    reviews
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
