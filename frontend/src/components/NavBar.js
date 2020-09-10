@@ -8,7 +8,7 @@ import ReviewButton from "./ReviewButton.js"
 const NavBar = ({currentUser}) => {
     return (
         <div className="nav">
-            {currentUser ? <><WelcomeMessage user={currentUser}/><Logout /><ReviewButton/></> : <Login/>}
+            {currentUser ? <><WelcomeMessage user={currentUser}/><Logout /><ReviewButton/></> : <><Login/>or<button>Sign Up</button></>}
         </div>
     )
 }
