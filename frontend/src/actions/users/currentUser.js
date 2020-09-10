@@ -1,4 +1,5 @@
 import { resetLoginForm } from "./loginForm.js"
+import { getReviews } from "../reviews/getReviews.js"
 
 export const setCurrentUser = user => {
     return {
@@ -23,6 +24,8 @@ export const login = loginFormData => {
                 alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
+                dispatch(getReviews())
+                dispatch(resetLoginForm())
             }
         })
         .catch(console.log)
@@ -62,6 +65,7 @@ export const getCurrentUser = () => {
             } else {
                 dispatch(setCurrentUser(response.data))
                 dispatch(resetLoginForm())
+                dispatch(getReviews())
             }
         })
         .catch(console.log)
