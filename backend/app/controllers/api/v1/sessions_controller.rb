@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
 
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
-            render json: @user
+            render json: UserSerializer.new(@user)
         else
             render json: {
                 error: "Invalid Credentials"
