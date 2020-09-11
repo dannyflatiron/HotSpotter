@@ -5,7 +5,7 @@ export default (state = initialState, action) => {
     case "UPDATE_SIGNUP_FORM":
         return action.formData
     case "RESET_SIGNUP_NOW":
-        return action.formData
+        return initialState
     default: 
         return state
     }
