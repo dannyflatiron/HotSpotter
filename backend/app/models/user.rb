@@ -3,5 +3,5 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :favorited_locations
 
-    validates :username, :presence => true, :uniqueness => true, :length => { :minimum => 4 }
+    validates :username, :presence => true, :uniqueness => true, :length => { :minimum => 1 }
 end
