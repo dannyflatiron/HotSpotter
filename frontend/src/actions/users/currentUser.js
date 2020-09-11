@@ -55,7 +55,7 @@ export const login = (loginFormData, history) => {
             if (user.error) {
                 alert(user.error)
             } else {
-                dispatch(setCurrentUser(user))
+                dispatch(setCurrentUser(user.data))
                 dispatch(getReviews())
                 dispatch(resetLoginForm())
                 history.push('/')
