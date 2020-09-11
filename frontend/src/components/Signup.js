@@ -5,7 +5,7 @@ import { signup } from '../actions/users/currentUser.js'
 import UsernameInput from './UsernameInput.js'
 import PasswordInput from './PasswordInput.js'
 
-const Signup = ({signupFormData, updateSignupForm}) => {
+const Signup = ({signupFormData, updateSignupForm, signup}) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -18,7 +18,8 @@ const Signup = ({signupFormData, updateSignupForm}) => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        // signup(signupFormData)
+        console.log(event.target)
+        signup(signupFormData)
     }
 
     return (
@@ -36,4 +37,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { updateSignupForm })(Signup)
+export default connect(mapStateToProps, { updateSignupForm, signup })(Signup)
