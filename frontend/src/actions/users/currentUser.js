@@ -15,7 +15,7 @@ export const clearCurrentUser = () => {
     }
 }
 
-export const signup = signupFormData => {
+export const signup = (signupFormData, history) => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/signup", {
         credentials: "include",
@@ -33,13 +33,14 @@ export const signup = signupFormData => {
                 dispatch(setCurrentUser(user.data))
                 dispatch(getReviews())
                 dispatch(resetSignupForm())
+                history.push('/')
             }
         })
         .catch(console.log)
     }
 }
 
-export const login = loginFormData => {
+export const login = (loginFormData, history) => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
         credentials: "include",
@@ -57,6 +58,7 @@ export const login = loginFormData => {
                 dispatch(setCurrentUser(user))
                 dispatch(getReviews())
                 dispatch(resetLoginForm())
+                history.push('/')
             }
         })
         .catch(console.log)
