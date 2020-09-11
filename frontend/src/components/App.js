@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
     <div className="App">
-      {/* <NavBar /> */}
+      <NavBar />
       {/* <Map google={this.props.google} /> */}
       <Review />
       <Router >
