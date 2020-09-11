@@ -1,8 +1,8 @@
 import React from 'react'
 
-const WelcomeMessage = (props) => {
+const WelcomeMessage = ({user}) => {
     return (
-        <p id="logged_in">Welcome, {props.user.username}</p>
+        <p id="logged_in">Welcome, {user.attributes.username}</p>
     )
 }
 
