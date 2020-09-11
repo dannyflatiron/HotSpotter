@@ -5,7 +5,7 @@ import { signup } from '../actions/users/currentUser.js'
 import UsernameInput from './UsernameInput.js'
 import PasswordInput from './PasswordInput.js'
 
-const Signup = ({signupFormData, updateSignupForm, signup}) => {
+const Signup = ({signupFormData, updateSignupForm, signup, history}) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -19,7 +19,7 @@ const Signup = ({signupFormData, updateSignupForm, signup}) => {
     const handleSubmit = event => {
         event.preventDefault()
         console.log(event.target)
-        signup(signupFormData)
+        signup(signupFormData, history)
     }
 
     return (
