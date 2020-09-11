@@ -8,12 +8,14 @@ import currentUser from './reducers/currentUser'
 import loginForm from './reducers/loginForm'
 import reviews from './reducers/reviews'
 import signupForm from './reducers/signupForm'
+import newReviewForm from './reducers/newReviewForm.js'
 
 const reducer = combineReducers({
     currentUser,
     loginForm,
     reviews,
-    signupForm
+    signupForm,
+    newReviewForm
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
