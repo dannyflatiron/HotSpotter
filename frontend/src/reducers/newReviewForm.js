@@ -1,5 +1,7 @@
-const initialState = {content: ''}
-
+const initialState = {
+    content:"",
+    user_id: null
+}
 export default (state = initialState, action) => {
     switch (action.type) {
     case "UPDATE_NEW_REVIEW_FORM":
