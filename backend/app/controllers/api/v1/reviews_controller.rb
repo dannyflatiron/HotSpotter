@@ -15,11 +15,13 @@ class Api::V1::ReviewsController < ApplicationController
 
     def create
         review = Review.new(review_params)
-
         if review.save
             render json: review
         else
-            render json: review.errors
+            resp = {
+                error: review.errors.full_messages
+              }
+              render json: resp, status: :unprocessable_entity
         end
     end
 
