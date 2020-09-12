@@ -16,7 +16,7 @@ class Api::V1::ReviewsController < ApplicationController
     def create
         review = Review.new(review_params)
         if review.save
-            render json: review
+            render json: ReviewSerializer.new(review).serialized_json
         else
             resp = {
                 error: review.errors.full_messages
