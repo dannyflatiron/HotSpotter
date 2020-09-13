@@ -1,32 +1,32 @@
 import React from 'react';
 import { updateNewReviewForm } from '../actions/reviews/newReviewForm'
+import { resetNewReviewForm } from '../actions/reviews/newReviewForm'
 import { createReview } from '../actions/reviews/createReview.js'
 import { connect } from 'react-redux'
 
-const NewReviewForm = ({newReviewFormData, updateNewReviewForm, createReview, userId}) => {
-// console.log("newReviewFormData", newReviewFormData.content)
+const NewReviewForm = ({newReviewFormData, updateNewReviewForm, createReview, userId, resetNewReviewForm}) => {
 
   const handleChange = event => {
-    let content  = newReviewFormData.content
-    let user = newReviewFormData.user_id
-    content = event.target.value
+    let content  = event.target.value
+
     const formData = {
       content,
       userId
     }
 
     updateNewReviewForm(formData)
-    return formData
   }
 
   const handleSubmit = (event, userId) => {
     event.preventDefault()
     createReview(newReviewFormData, userId)
+    resetNewReviewForm()
   }
 
   return (
+    
     <form onSubmit={handleSubmit}>
-      <input name="content" onChange={handleChange} value={undefined} />
+      <input name="content" onChange={handleChange} value={newReviewFormData.content} />
       <input type="submit" value="Submit Review"/>
     </form>
   )
@@ -40,4 +40,4 @@ const mapStateToProps = (state) => {
   } 
 }
 
-export default connect(mapStateToProps, { updateNewReviewForm, createReview })(NewReviewForm);
+export default connect(mapStateToProps, { updateNewReviewForm, createReview, resetNewReviewForm })(NewReviewForm);
