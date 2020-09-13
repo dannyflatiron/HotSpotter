@@ -7,7 +7,7 @@ export const updateNewReviewForm = (formData) => {
   
   export const resetNewReviewForm = () => {
     return {
-      type: "RESET_SIGNUP_FORM"
+      type: "RESET_NEW_REVIEW_NOW"
     }
   }
 
