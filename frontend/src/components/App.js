@@ -1,15 +1,16 @@
 import React from 'react';
 import '../App.css';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { connect } from 'react-redux'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import { getCurrentUser } from "../actions/users/currentUser.js"
 import NavBar from "./NavBar.js"
 import Review from "./Review.js"
+import Home from "./Home.js"
 import Login from "./Login.js"
 import Signup from "./Signup.js"
-import Home from "./Home.js"
+// import WrappedContainer from "./WrappedContainer.js"
 import NewReview from "./NewReviewForm.js"
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -19,23 +20,30 @@ class App extends React.Component {
   }
 
   render() {
+    const loggedIn = this.props.loggedIn
     return (
     <div className="App">
       {/* <Map google={this.props.google} /> */}
-      <Router >
-        <Route exact path='/' render={() => this.props.loggedIn ? <NavBar/> : <Home/>}/>
-        <Route exact path='/signup' component={Signup}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/reviews' component={Review}/>
-        <Route exact path='/reviews/new' component={NewReview}/>
-      </Router>
+      <BrowserRouter >
+      {/* { this.props.loggedIn ? <NavBar /> : <Home/> } */}
+        {/* <Route exact path='/' component={() => this.props.loggedIn ? <NavBar/> : <Home/>}/> */}
+        { loggedIn ? <NavBar /> : <Home/> } 
+        <Route  path='/login' exact component={Login}/>
+        <Route  path='/signup' exact component={Signup}/>
+        <Route  path='/reviews' exact component={Review}/>
+        <Route  path='/reviews/new' exact component={NewReview}/>
+        <Map google={this.props.google} />
+        <Route  path='/navbar' exact component={NavBar}/>
+
+       
+      </BrowserRouter>
     </div>  
 
     )
   }
 }
 
-const mapStateToProps = ({ currentUser }) => {
+  const mapStateToProps = ({ currentUser }) => {
   return ({
     loggedIn: !!currentUser
   })
@@ -46,4 +54,10 @@ const WrappedContainer = GoogleApiWrapper({
 })(App)
 
 export default connect(mapStateToProps, { getCurrentUser })(WrappedContainer)
+
+// const WrappedContainer = GoogleApiWrapper({
+//   // apiKey: (process.env.REACT_APP_API_KEY)
+// })(App)
+
+// export default connect(mapStateToProps, { getCurrentUser })(App)
  
