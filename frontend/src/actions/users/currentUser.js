@@ -2,6 +2,7 @@ import { resetLoginForm } from "./loginForm.js"
 import { resetSignupForm } from "./signupForm.js"
 import { getReviews } from "../reviews/getReviews.js"
 
+
 export const setCurrentUser = user => {
     return {
         type: "SET_CURRENT_USER",
@@ -65,14 +66,17 @@ export const login = (loginFormData, history) => {
     }
 }
 
-export const logout = () => {
+export const logout = (callback, id) => {
     return dispatch => {
-        dispatch(clearCurrentUser())
-        return fetch("http://localhost:3000/api/v1/logout", {
+        return fetch(`http://localhost:3000/api/v1/sessions/${id}`, {
             credentials: "include",
             method: "DELETE",
             }
         )
+            .then(data => {
+                dispatch(clearCurrentUser())
+                callback()
+            })
     }
 }
 
