@@ -5,10 +5,10 @@ export const addReview = review => {
   }
 }
 
-export const createReview = (review, userId) => {
+export const createReview = (newReviewFormData) => {
     const data = {
-        content: review.content,
-        user_id: userId
+        content: newReviewFormData.content,
+        user_id: newReviewFormData.userId
     }
     return dispatch => {
       return fetch("http://localhost:3000/api/v1/reviews", {
