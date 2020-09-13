@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   post "/api/v1/login", to: "api/v1/sessions#create"
   post "/api/v1/signup", to: "api/v1/users#create"
   get "/api/v1/get_current_user", to: "api/v1/sessions#get_current_user"
-  delete "/api/v1/logout", to: "api/v1/sessions#destroy"
 
 
   namespace :api do
@@ -19,6 +18,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :reviews do
       end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :sessions, only: [:create, :destroy]
     end
   end
 
