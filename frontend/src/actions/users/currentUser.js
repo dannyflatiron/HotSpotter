@@ -2,7 +2,7 @@ import { resetLoginForm } from "./loginForm.js"
 import { resetSignupForm } from "./signupForm.js"
 import { getReviews } from "../reviews/getReviews.js"
 import { clearReviews } from "../reviews/clearReviews.js"
-
+import { resetNewReviewForm } from "../reviews/newReviewForm.js"
 
 export const setCurrentUser = user => {
     return {
@@ -76,6 +76,7 @@ export const logout = (callback, id) => {
         )
             .then(data => {
                 dispatch(clearReviews())
+                dispatch(resetNewReviewForm())
                 dispatch(clearCurrentUser())
                 callback()
             })
