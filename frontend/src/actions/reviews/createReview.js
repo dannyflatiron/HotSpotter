@@ -1,3 +1,5 @@
+import history from '../../history.js';
+
 export const addReview = review => {
   return {
     type: "ADD_REVIEW",
@@ -25,6 +27,7 @@ export const createReview = (newReviewFormData) => {
             alert(resp.error)
           } else {
             dispatch(addReview(resp))
+            history.push('/reviews')
           }
         }
         )

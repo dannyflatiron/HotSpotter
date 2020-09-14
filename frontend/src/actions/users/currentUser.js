@@ -3,6 +3,7 @@ import { resetSignupForm } from "./signupForm.js"
 import { getReviews } from "../reviews/getReviews.js"
 import { clearReviews } from "../reviews/clearReviews.js"
 import { resetNewReviewForm } from "../reviews/newReviewForm.js"
+import history from '../../history.js';
 
 export const setCurrentUser = user => {
     return {
@@ -17,7 +18,7 @@ export const clearCurrentUser = () => {
     }
 }
 
-export const signup = (signupFormData, history) => {
+export const signup = (signupFormData ) => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/signup", {
         credentials: "include",
@@ -42,7 +43,7 @@ export const signup = (signupFormData, history) => {
     }
 }
 
-export const login = (loginFormData, history) => {
+export const login = (loginFormData ) => {
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
         credentials: "include",
@@ -79,7 +80,8 @@ export const logout = (id, callback) => {
                 dispatch(clearReviews())
                 dispatch(resetNewReviewForm())
                 dispatch(clearCurrentUser())
-                callback()
+                // callback()
+                history.push('/')
             })
     }
 }
