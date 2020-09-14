@@ -10,10 +10,10 @@ const NavBar = ({currentUser, loggedIn, logout}) => {
     return (
       <div className="NavBar">
         {/* {loggedIn ? <><WelcomeMessage user={currentUser}/><Logout to="/" /></> : <Home/>} */}
-        <WelcomeMessage user={currentUser}/>
-        <Link exact activeclass to="/locations">Map</Link>
-        <Link exact activeclass to="/reviews" >View All Reviews</Link>
-        <Link exact activeclass to="/reviews/new">New Review</Link>
+        <WelcomeMessage user={currentUser}/> 
+        <Link  to="/locations">Map  |  </Link>        
+        <Link  to="/reviews" >View All Reviews  |  </Link>
+        <Link  to="/reviews/new">New Review  |  </Link>  
         <Link onClick={() => logout(() => {history.push('/')})}>Log Out</Link>
       </div>
     )
