@@ -6,7 +6,6 @@ import { logout } from '../actions/users/currentUser.js'
 import { useHistory } from "react-router-dom"
 
 const NavBar = ({currentUser, loggedIn, logout}) => {
-  const history = useHistory()
     return (
       <div className="NavBar">
         {/* {loggedIn ? <><WelcomeMessage user={currentUser}/><Logout to="/" /></> : <Home/>} */}
@@ -14,7 +13,7 @@ const NavBar = ({currentUser, loggedIn, logout}) => {
         <Link  to="/locations">Map  |  </Link>        
         <Link  to="/reviews" >View All Reviews  |  </Link>
         <Link  to="/reviews/new">New Review  |  </Link>  
-        <Link onClick={() => logout(currentUser.id, () => {history.push('/')})}>Log Out</Link>
+        <Link onClick={() => logout(currentUser.id)}>Log Out</Link>
       </div>
     )
 }
