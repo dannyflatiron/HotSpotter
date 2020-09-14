@@ -18,9 +18,11 @@ const NewReviewForm = ({newReviewFormData, updateNewReviewForm, createReview, us
   }
 
   const handleSubmit = (event, userId) => {
+    // userId might not be needed since the state of form carries the userId already
     event.preventDefault()
     createReview(newReviewFormData, userId)
     resetNewReviewForm()
+
   }
 
   return (
