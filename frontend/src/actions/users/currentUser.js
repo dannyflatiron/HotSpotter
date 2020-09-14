@@ -67,7 +67,8 @@ export const login = (loginFormData, history) => {
     }
 }
 
-export const logout = (callback, id) => {
+export const logout = (id, callback) => {
+    // console.log("logout action", id)
     return dispatch => {
         return fetch(`http://localhost:3000/api/v1/sessions/${id}`, {
             credentials: "include",
