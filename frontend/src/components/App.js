@@ -10,7 +10,9 @@ import Login from "./Login.js"
 import Signup from "./Signup.js"
 // import WrappedContainer from "./WrappedContainer.js"
 import NewReview from "./NewReviewForm.js"
-import { BrowserRouter, Route } from 'react-router-dom';
+// import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
+import history from '../history';
 
 
 class App extends React.Component {
@@ -24,7 +26,8 @@ class App extends React.Component {
     return (
     <div className="App">
       {/* <Map google={this.props.google} /> */}
-      <BrowserRouter >
+      {/* <BrowserRouter > this is the right code */}
+      <Router history={history}>
       {/* { this.props.loggedIn ? <NavBar /> : <Home/> } */}
         {/* <Route exact path='/' component={() => this.props.loggedIn ? <NavBar/> : <Home/>}/> */}
         { loggedIn ? <NavBar /> : <Home/> } 
@@ -35,8 +38,8 @@ class App extends React.Component {
         <Map google={this.props.google} />
         <Route  path='/navbar' exact component={NavBar}/>
 
-       
-      </BrowserRouter>
+      </Router>
+      {/* </BrowserRouter> */}
     </div>  
 
     )
