@@ -2,7 +2,9 @@ import React from 'react';
 import '../App.css';
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
+import fetchPublicData from '../publicApiFetch'
 import { getCurrentUser } from "../actions/users/currentUser.js"
+import { getLocations } from "../actions/locations/getlocations.js"
 import NavBar from "./NavBar.js"
 import Review from "./Review.js"
 import Home from "./Home.js"
@@ -15,10 +17,43 @@ import mapStyles from "../mapStyles.js"
 
 
 class App extends React.Component {
+  _isMounted = false
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      data: null
+    }
+  }
 
   componentDidMount() {
+    // this._isMounted = true
     this.props.getCurrentUser()
+    this.props.getLocations()
+    console.log(this.props.locations)
+    // this.fetchHotSpotLocations()
+    // this.interval = setInterval(this.fetchHotSpotLocations, 60000)
   }
+
+  fetchHotSpotLocations() {
+    fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
+    .then(res => res.json())
+    .then(res => {
+      const locationData = res.slice(0,50)
+      // console.log("fetch data", data)
+      if (this._isMounted) {
+        this.setState({
+          data: locationData
+        })
+      }
+    })
+  }
+
+  // componentWillUnmount() {
+  //   // this._isMounted = false
+  //   clearInterval(this.interval)
+  // }
 
   render() {
     const loggedIn = this.props.loggedIn
@@ -34,12 +69,23 @@ class App extends React.Component {
       disableDefaultUI: true
     }
 
+
     return (
     <div className="App">
       <h1>
         HotSpotter <span>📶 </span>
       </h1>
-      <Map google={this.props.google} zoom={12} mapContainerStyle={containerStyle} initialCenter={center} styles={mapStyles} disableDefaultUI={options}/>
+      <Map google={this.props.google} zoom={12} mapContainerStyle={containerStyle} initialCenter={center} styles={mapStyles} disableDefaultUI={options}>
+      {console.log(this.props.locations)}
+
+        {this.props.locations.map(location => {
+          return <Marker key={location.objectid} icon={".,/wifi-signal.svg"} name={location.name} position={{lat: location.latitude, lng: location.longitude}}>
+            {/* <button className="location-marker">
+              <img src="../wifi-signal.svg" alt="hotspot location"/>
+            </button> */}
+          </Marker>
+        })}
+      </Map>
       <Router history={history}>
         { loggedIn ? <NavBar /> : <Home/> } 
         <Route  path='/login' exact component={Login}/>
@@ -55,9 +101,10 @@ class App extends React.Component {
   }
 }
 
-  const mapStateToProps = ({ currentUser }) => {
+  const mapStateToProps = ({ currentUser, locations }) => {
   return ({
-    loggedIn: !!currentUser
+    loggedIn: !!currentUser,
+    locations
   })
 }
 
@@ -65,4 +112,4 @@ const WrappedContainer = GoogleApiWrapper({
   apiKey: (process.env.REACT_APP_API_KEY)
 })(App)
 
-export default connect(mapStateToProps, { getCurrentUser })(WrappedContainer) 
+export default connect(mapStateToProps, { getCurrentUser, getLocations })(WrappedContainer) 
