@@ -2,18 +2,18 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
+} */
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,26 +22,106 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+} */
+
+.navBar {
+  /* display: inline-flex; */
+  display: inline-block;
+  color:white;
+  position: relative;
+  z-index: 9999;
 }
 
-.nav {
-  display: inline-flex;
+/* .home {
+  display: inline-block;
+  color: red;
+  position: absolute;
+  z-index: 9999;
+} */
+
+.log {
+  z-index: 10;
+  position: relative;
+  color:white;
+  
+}
+
+/* .signup {
+  z-index: 10;
+  position: relative;
+  color: white;
+}
+
+.login {
+  z-index: 10;
+  position: relative;
+  color: white;
+} */
+
+.username {
+  z-index: 10;
+  position: relative;
+  color: white;
+}
+
+.password {
+  z-index: 10;
+  position: relative;
+  color: white;
+}
+
+.content {
+  z-index: 10;
+  position: relative;
+  color: white;
+}
+
+.submit {
+  z-index: 10;
+  position: relative;
+  color: white;
+  background: black
+}
+
+a.active {
+  color: green
 }
 
 #logged_in {
   margin: 0;
   padding: 0
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+}
+
+h1 {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgb(206, 203, 13);
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
