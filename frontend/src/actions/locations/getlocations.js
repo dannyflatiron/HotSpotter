@@ -5,6 +5,14 @@ export const setLocations = locations => {
     }
 }
 
+export const setLocationMarker = (location) => {
+    console.log("stLocationMarker", location)
+    return {
+        type: "SET_LOCATION_MARKER",
+        location
+    }
+}
+
 export const getLocations = () => {
     return dispatch => {
         return fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json", {
@@ -24,4 +32,3 @@ export const getLocations = () => {
         .catch(console.log)
     }
 }
-
