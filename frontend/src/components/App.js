@@ -34,7 +34,6 @@ class App extends React.Component {
       disableDefaultUI: true
     }
 
-    const styles = require('../mapStyles.js')
     return (
     <div className="App">
       <h1>
