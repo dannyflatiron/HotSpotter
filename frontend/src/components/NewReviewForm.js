@@ -28,8 +28,8 @@ const NewReviewForm = ({newReviewFormData, updateNewReviewForm, createReview, us
   return (
     
     <form onSubmit={handleSubmit}>
-      <input name="content" onChange={handleChange} value={newReviewFormData.content} />
-      <input type="submit" value="Submit Review"/>
+      <input className="content" name="content" onChange={handleChange} value={newReviewFormData.content} />
+      <input className="submit" type="submit" value="Submit Review"/>
     </form>
   )
 };
