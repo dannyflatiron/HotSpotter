@@ -19,7 +19,6 @@ export const getReviews = () => {
             // if (response.error) {
             //     alert(response.error)
             // } else {
-                console.log("response", response)
                 dispatch(setReviews(response))
             // }
         })
