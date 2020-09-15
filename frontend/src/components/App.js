@@ -69,7 +69,11 @@ class App extends React.Component {
       disableDefaultUI: true
     }
 
+    // const markerIcon = new google.maps.Marker({
+    //   icon: '../wifiSignal.svg'
+    // })
 
+    
     return (
     <div className="App">
       <h1>
@@ -79,7 +83,7 @@ class App extends React.Component {
       {console.log(this.props.locations)}
 
         {this.props.locations.map(location => {
-          return <Marker key={location.objectid} icon={".,/wifi-signal.svg"} name={location.name} position={{lat: location.latitude, lng: location.longitude}}>
+          return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}}>
             {/* <button className="location-marker">
               <img src="../wifi-signal.svg" alt="hotspot location"/>
             </button> */}
