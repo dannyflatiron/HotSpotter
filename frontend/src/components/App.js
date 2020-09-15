@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
 import fetchPublicData from '../publicApiFetch'
 import { getCurrentUser } from "../actions/users/currentUser.js"
-import { getLocations } from "../actions/locations/getlocations.js"
+import { getLocations, setLocations, setLocationMarker } from "../actions/locations/getlocations.js"
 import NavBar from "./NavBar.js"
 import Review from "./Review.js"
 import Home from "./Home.js"
@@ -16,43 +16,27 @@ import history from '../history';
 import mapStyles from "../mapStyles.js"
 
 
-class App extends React.Component {
-  _isMounted = false
 
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-      data: null
-    }
-  }
+class App extends React.Component {
 
   componentDidMount() {
     // this._isMounted = true
     this.props.getCurrentUser()
     this.props.getLocations()
-    console.log(this.props.locations)
-    // this.fetchHotSpotLocations()
-    // this.interval = setInterval(this.fetchHotSpotLocations, 60000)
   }
 
-  fetchHotSpotLocations() {
-    fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
-    .then(res => res.json())
-    .then(res => {
-      const locationData = res.slice(0,50)
-      // console.log("fetch data", data)
-      if (this._isMounted) {
-        this.setState({
-          data: locationData
-        })
-      }
-    })
-  }
-
-  // componentWillUnmount() {
-  //   // this._isMounted = false
-  //   clearInterval(this.interval)
+  // fetchHotSpotLocations() {
+  //   fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
+  //   .then(res => res.json())
+  //   .then(res => {
+  //     const locationData = res.slice(0,50)
+  //     // console.log("fetch data", data)
+  //     if (this._isMounted) {
+  //       this.setState({
+  //         data: locationData
+  //       })
+  //     }
+  //   })
   // }
 
   render() {
@@ -68,11 +52,6 @@ class App extends React.Component {
     const options = {
       disableDefaultUI: true
     }
-
-    // const markerIcon = new google.maps.Marker({
-    //   icon: '../wifiSignal.svg'
-    // })
-
     
     return (
     <div className="App">
@@ -83,10 +62,8 @@ class App extends React.Component {
       {console.log(this.props.locations)}
 
         {this.props.locations.map(location => {
-          return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}}>
-            {/* <button className="location-marker">
-              <img src="../wifi-signal.svg" alt="hotspot location"/>
-            </button> */}
+          return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}} onClick={() => {this.props.setLocationMarker(location)}}>
+
           </Marker>
         })}
       </Map>
@@ -116,4 +93,4 @@ const WrappedContainer = GoogleApiWrapper({
   apiKey: (process.env.REACT_APP_API_KEY)
 })(App)
 
-export default connect(mapStateToProps, { getCurrentUser, getLocations })(WrappedContainer) 
+export default connect(mapStateToProps, { getCurrentUser, getLocations, setLocationMarker })(WrappedContainer) 
