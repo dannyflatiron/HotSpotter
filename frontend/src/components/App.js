@@ -2,7 +2,6 @@ import React from 'react';
 import '../App.css';
 import { connect } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
-import fetchPublicData from '../publicApiFetch'
 import { getCurrentUser } from "../actions/users/currentUser.js"
 import { getLocations, setLocations, setLocationMarker } from "../actions/locations/getlocations.js"
 import NavBar from "./NavBar.js"
@@ -19,25 +18,22 @@ import mapStyles from "../mapStyles.js"
 
 class App extends React.Component {
 
+
   componentDidMount() {
-    // this._isMounted = true
     this.props.getCurrentUser()
     this.props.getLocations()
+    console.log("marker data", this.props.locationMarker)
   }
 
-  // fetchHotSpotLocations() {
-  //   fetch("https://data.cityofnewyork.us/resource/yjub-udmw.json")
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     const locationData = res.slice(0,50)
-  //     // console.log("fetch data", data)
-  //     if (this._isMounted) {
-  //       this.setState({
-  //         data: locationData
-  //       })
-  //     }
-  //   })
-  // }
+  shouldComponentUpdate(nextProps) {
+    console.log("should not update", nextProps)
+    if (this.props.locations === nextProps.locations) {
+      return false 
+    }
+
+    return true
+  }
+
 
   render() {
     const loggedIn = this.props.loggedIn
@@ -55,17 +51,22 @@ class App extends React.Component {
     
     return (
     <div className="App">
+
       <h1>
         HotSpotter <span>📶 </span>
       </h1>
+      {console.log("marker data", this.props.locationMarker)}
+
       <Map google={this.props.google} zoom={12} mapContainerStyle={containerStyle} initialCenter={center} styles={mapStyles} disableDefaultUI={options}>
-      {console.log(this.props.locations)}
-
         {this.props.locations.map(location => {
-          return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}} onClick={() => {this.props.setLocationMarker(location)}}>
-
+          return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}} onClick={(event) => {this.props.setLocationMarker(location)}}>
           </Marker>
         })}
+        {this.props.locationMarker && (
+          <InfoWindow onCloseClick={() => {setLocationMarker(null)}} visible={true} content={this.props.locationMarker.latitude} position={{lat: this.props.locationMarker.latitude, lng: this.props.locationMarker.longitude } }>
+
+          </InfoWindow>
+        )}
       </Map>
       <Router history={history}>
         { loggedIn ? <NavBar /> : <Home/> } 
@@ -82,9 +83,11 @@ class App extends React.Component {
   }
 }
 
-  const mapStateToProps = ({ currentUser, locations }) => {
+  const mapStateToProps = ({ currentUser, locations, locationMarker }) => {
+    console.log("state data", locationMarker)
   return ({
     loggedIn: !!currentUser,
+    locationMarker,
     locations
   })
 }
