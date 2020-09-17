@@ -58,7 +58,7 @@
   color: white;
 }
 
-/* .signup {
+.signup {
   z-index: 10;
   position: relative;
   color: white;
@@ -68,18 +68,18 @@
   z-index: 10;
   position: relative;
   color: white;
-} */
+}
 
 .username {
   z-index: 10;
   position: relative;
-  color: white;
+  color: black;
 }
 
 .password {
   z-index: 10;
   position: relative;
-  color: white;
+  color: black;
 }
 
 .content {
