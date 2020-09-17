@@ -3,26 +3,30 @@ class Api::V1::ReviewsController < ApplicationController
   
   def index
       reviews = Review.all
-      # reviews_json = ReviewSerializer.new(reviews).serialized_json
+      reviews_json = ReviewSerializer.new(reviews).serialized_json
       reviews_json = reviews
       render json: reviews_json
   end
 
   def show
-      # review_json = ReviewSerializer.new(@review).serialized_json
-      review_json = @review
-      render json: review_json
+      render json: ReviewSerializer.new(@review).serialized_json
   end
 
   def create
-      review = Review.new(review_params)
-      if review.save
-          render json: ReviewSerializer.new(review).serialized_json
+    location = Location.find_or_create_by(name: params[:name], location: params[:location], ssid: params[:ssid], price: params[:price] )
+    #   review = location.reviews.build.(content: params[:content], user_id: params[:user_id])
+    review = Review.find_or_create_by(content: params[:content], user_id: params[:user_id])
+    review.location_id = location.id
+    location.reviews.push(review)
+      if review.save && location.save
+        #   render json: ReviewSerializer.new(review).serialized_json
+          render json: LocationSerializer.new(location).serialized_json
       else
           resp = {
               error: review.errors.full_messages
             }
             render json: resp, status: :unprocessable_entity
+            binding.pry
       end
   end
 
@@ -48,5 +52,6 @@ class Api::V1::ReviewsController < ApplicationController
 
   def review_params
       params.require(:review).permit(:content, :user_id)
+      binding.pry
   end
 end
