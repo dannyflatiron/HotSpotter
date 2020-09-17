@@ -36,6 +36,7 @@ const NewReviewForm = ({
         name='content'
         onChange={handleChange}
         value={newReviewFormData.content}
+        placeholder="Create Review"
       />
       <input className='submit' type='submit' value='Submit Review' />
     </form>
