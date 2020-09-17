@@ -31,19 +31,18 @@ class App extends React.Component {
 
 
     // shouldComponentUpdate(nextProps) {
-    //     // console.log("should not update", nextProps)
-    //     // if (this.props.locations === nextProps.locations) {
-    //     //     return false
-    //     // }
+    //     console.log("should not update", nextProps)
+    //     if (this.props.locations !== nextProps.locations) {
+    //         return false
+    //     }
 
-    //     return true
+    //     return false
     // }
 
       onMarkerClick = (props, marker, e, location) => {
         // console.log("onMarkerClick marker", props)
         // console.log("onMarkerClick marker", marker)
         // console.log("onMarkerClick e", e)
-        console.log("onMarkerClick location", location)
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
@@ -86,19 +85,16 @@ class App extends React.Component {
 
                 <Map google={this.props.google} onClick={this.onMapClicked} zoom={12} mapContainerStyle={containerStyle} initialCenter={center} styles={mapStyles} disableDefaultUI={true}>
                     {this.props.locations.map(location => {
-                        // return <Marker key={location.objectid} icon={{url: require('../wifiSignal.svg')}} name={location.name} position={{lat: location.latitude, lng: location.longitude}} onClick={(event) => {this.props.setLocationMarker(location)}}>
-                        return <Marker key={location.objectid} icon={{ url: require('../wifiSignal.svg') }} name={'Dolares Park'} position={{ lat: location.latitude, lng: location.longitude }} onClick={this.onMarkerClick} name={'Current location'}>
+                        return <Marker key={location.objectid} icon={{ url: require('../wifiSignal.svg') }} position={{ lat: location.latitude, lng: location.longitude }} onClick={this.onMarkerClick} name={location.name} type={location.type} ssid={location.ssid} location={location.location}>
                                 
                         </Marker>
                     })}
-                    {/* {this.props.locationMarker && (
-                        <InfoWindow children={<form></form>} onCloseClick={() => { setLocationMarker(null) }} visible={true} content={this.props.locationMarker.latitude} position={{ lat: parseFloat(this.props.locationMarker.latitude), lng: parseFloat(this.props.locationMarker.longitude) }}>
-
-                        </InfoWindow>
-                    )} */}
-                    <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                    <InfoWindow onClose={this.onInfoWindowClose} marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                        {console.log(this.state.selectedPlace)}
                         <div>
-                <h1>{this.state.selectedPlace.name}</h1>
+                            <p className="infoWindow">SSID: {this.state.selectedPlace.ssid}</p>
+                            <p className="infoWindow">Type: {this.state.selectedPlace.type}</p>
+                            <p className="infoWindow">Location: {this.state.selectedPlace.location}</p>
                         </div>
                     </InfoWindow>
                 </Map>
@@ -127,7 +123,12 @@ const mapStateToProps = ({ currentUser, locations, locationMarker }) => {
 }
 
 const LoadingContainer = (props) => (
-    <div>Fancy loading container!</div>
+    <div class="wrap">
+        <div class="loading">
+            <div class="bounceball"></div>
+            <div class="text">NOW LOADING</div>
+        </div>
+    </div>
   )
 
 const WrappedContainer = GoogleApiWrapper({
