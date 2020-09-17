@@ -159,7 +159,7 @@ const LoadingContainer = (props) => (
 );
 
 const WrappedContainer = GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_API_KEY,
+  apiKey: process.env.REACT_APP_GOOGLE_KEY,
   LoadingContainer: LoadingContainer,
 })(App);
 
