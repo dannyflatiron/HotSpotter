@@ -10,24 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_163213) do
+ActiveRecord::Schema.define(version: 2020_09_17_202911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "favorited_locations", force: :cascade do |t|
+  create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
+    t.string "ssid"
+    t.string "type"
+    t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_favorited_locations_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_reviews_on_location_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -38,6 +41,6 @@ ActiveRecord::Schema.define(version: 2020_09_08_163213) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "favorited_locations", "users"
+  add_foreign_key "reviews", "locations"
   add_foreign_key "reviews", "users"
 end

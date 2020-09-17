@@ -41,7 +41,6 @@ class App extends React.Component {
       activeMarker: marker,
       showingInfoWindow: true,
     });
-    //   this.props.setLocationMarker(location)
   };
 
   onMapClicked = (props) => {

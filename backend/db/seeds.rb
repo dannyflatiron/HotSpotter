@@ -10,8 +10,8 @@
 # Review.create(content:"Hola!", user: User.first)
 # FavoritedLocation.create(name:"Brooklyn", user: User.first)
 
-# mary = User.create(username: "Mary", password: "password")
-# Review.create(content:"Moscato is life!", user: User.second)
-# Review.create(content:"I must go back to Aruba!", user: User.second)
-# FavoritedLocation.create(name:"Aruba", user: User.second)
+mary = User.create(username: "Mary", password: "password")
+Location.create(name:"Aruba", ssid:"1", type:"", location:"in the park")
+Review.create(content:"Moscato is life!", user: User.first, location: Location.first)
+Review.create(content:"I must go back to Aruba!", user: User.first, location: Location.first)
 
