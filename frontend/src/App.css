@@ -58,6 +58,11 @@
   color: white;
 }
 
+.review content {
+  z-index: 10;
+  position: relative;
+  color: black;}
+
 .signup {
   z-index: 10;
   position: relative;
@@ -85,7 +90,7 @@
 .content {
   z-index: 10;
   position: relative;
-  color: white;
+  color: black;
 }
 .reviewInput {
   margin-top: 5px;
