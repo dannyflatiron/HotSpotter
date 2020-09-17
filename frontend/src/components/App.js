@@ -13,7 +13,8 @@ import Review from "./Review.js";
 import Home from "./Home.js";
 import Login from "./Login.js";
 import Signup from "./Signup.js";
-import NewReview from "./NewReviewForm.js";
+// import NewReview from "./NewReviewForm.js";
+import ReviewButton from "./ReviewButton.js";
 import { Router, Route } from "react-router-dom";
 import history from "../history";
 import mapStyles from "../mapStyles.js";
@@ -34,19 +35,7 @@ class App extends React.Component {
     this.props.getLocations();
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //     console.log("should not update", nextProps)
-  //     if (this.props.locations !== nextProps.locations) {
-  //         return false
-  //     }
-
-  //     return false
-  // }
-
   onMarkerClick = (props, marker, e, location) => {
-    // console.log("onMarkerClick marker", props)
-    // console.log("onMarkerClick marker", marker)
-    // console.log("onMarkerClick e", e)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -121,7 +110,8 @@ class App extends React.Component {
                   Location: {this.state.selectedPlace.location}
                 </p>
                 <Provider store={store}>
-                  <NewReview />
+                  <NewReviewForm />
+                  <Review/>
                 </Provider>
               </div>
             </React.Fragment>
@@ -132,7 +122,7 @@ class App extends React.Component {
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
           <Route path='/reviews' exact component={Review} />
-          <Route path='/reviews/new' exact component={NewReview} />
+          <Route path='/reviews/new' exact component={NewReviewForm} />
           <Route path='/navbar' exact component={NavBar} />
         </Router>
       </div>
