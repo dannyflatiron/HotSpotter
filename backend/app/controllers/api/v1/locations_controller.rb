@@ -5,12 +5,13 @@ class Api::V1::LocationsController < ApplicationController
   def index
     @locations = Location.all
 
-    render json: @locations
+    render json: LocationSerializer.new(@locations).serialized_json
   end
 
   # GET /locations/1
   def show
-    render json: @location
+    binding.pry
+    render json: LocationSerializer.new(@location).serialized_json
   end
 
   # POST /locations
@@ -49,6 +50,6 @@ class Api::V1::LocationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def location_params
-      params.require(:location).permit(:name, :ssid, :type, :location)
+      params.require(:location).permit(:name, :ssid, :type, :location, :review_id)
     end
 end
