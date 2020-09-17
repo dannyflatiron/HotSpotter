@@ -6,6 +6,7 @@ import { logout } from '../actions/users/currentUser.js'
 import { useHistory } from "react-router-dom"
 
 const NavBar = ({currentUser, loggedIn, logout}) => {
+
     return (
       <div className="navBar" style={{zIndex:10}}>
         {/* {loggedIn ? <><WelcomeMessage user={currentUser}/><Logout to="/" /></> : <Home/>} */}
