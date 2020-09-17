@@ -40,7 +40,7 @@
 .navBar {
   /* display: inline-flex; */
   display: inline-block;
-  color:white;
+  color: white;
   position: relative;
   z-index: 9999;
 }
@@ -55,8 +55,7 @@
 .log {
   z-index: 10;
   position: relative;
-  color:white;
-  
+  color: white;
 }
 
 /* .signup {
@@ -88,21 +87,26 @@
   position: relative;
   color: white;
 }
+.reviewInput {
+  margin-top: 5px;
+  color: #000;
+}
 
 .submit {
+  margin-top: 5px;
   z-index: 10;
   position: relative;
   color: white;
-  background: black
+  background: black;
 }
 
 a.active {
-  color: green
+  color: green;
 }
 
 #logged_in {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 body {
@@ -145,19 +149,20 @@ h1 {
 
 .gm-style .gm-style-iw-c {
   padding-right: 10px !important;
-   padding-bottom: 0px !important;
-   max-width: 200px !important;
-   max-height: 326px !important;
-   min-width: 0px !important;
-   position: absolute;
-   box-sizing: border-box;
-   overflow: hidden;
-   top: 0;
-   left: 0;
-   transform: translate(-50%,-100%);
-   background-color: #dd9191;
-   border-radius: 8px;
-   box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  padding-bottom: 0px !important;
+  max-width: 200px !important;
+  max-height: 326px !important;
+  min-width: 0px !important;
+  height: 160px !important;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -100%);
+  background-color: #dd9191;
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
@@ -173,7 +178,7 @@ body {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .text {
@@ -190,7 +195,7 @@ body {
 }
 .bounceball:before {
   position: absolute;
-  content: '';
+  content: "";
   display: block;
   top: 0;
   width: 15px;
@@ -198,7 +203,7 @@ body {
   border-radius: 50%;
   background-color: black;
   -webkit-transform-origin: 50%;
-          transform-origin: 50%;
+  transform-origin: 50%;
   -webkit-animation: bounce 500ms alternate infinite ease;
-          animation: bounce 500ms alternate infinite ease;
+  animation: bounce 500ms alternate infinite ease;
 }
