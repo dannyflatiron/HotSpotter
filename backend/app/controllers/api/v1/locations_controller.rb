@@ -10,7 +10,6 @@ class Api::V1::LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    binding.pry
     render json: LocationSerializer.new(@location).serialized_json
   end
 
