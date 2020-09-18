@@ -17,9 +17,9 @@ const NewReviewForm = ({
     const formData = {
       content,
       userId,
-      locationMarker
+      locationMarker,
     };
-    console.log(formData)
+    console.log(formData);
     updateNewReviewForm(formData);
   };
 
@@ -36,22 +36,22 @@ const NewReviewForm = ({
         name='content'
         onChange={handleChange}
         value={newReviewFormData.content}
-        placeholder="Create Review"
+        placeholder='Create Review'
       />
       <input className='submit' type='submit' value='Submit Review' />
     </form>
   ) : (
-    "Please login or signup to review"
+    <p>Please login or signup to review</p>
   );
 };
 
 const mapStateToProps = (state) => {
-  const locationMarker = state.locationMarker
+  const locationMarker = state.locationMarker;
   const userId = state.currentUser ? state.currentUser.id : "";
   return {
     newReviewFormData: state.newReviewForm,
     userId,
-    locationMarker
+    locationMarker,
   };
 };
 

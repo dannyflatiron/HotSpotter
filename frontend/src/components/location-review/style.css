@@ -1,0 +1,55 @@
+.location {
+  position: absolute;
+  height: 70vh;
+  margin: 30px;
+  padding: 10px;
+  background: white;
+  border-radius: 5px;
+  right: 0;
+  overflow: scroll;
+  width: 22rem;
+}
+
+.location__title h2 {
+  color: #cecc41;
+  margin: 5px;
+  width: 90%;
+  float: left;
+  font-size: 1.2em;
+}
+
+.location__title button {
+  float: left;
+}
+
+.location h3 {
+  margin: 4px;
+  font-size: 1em;
+}
+.location h4 {
+  margin: 3px;
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+
+.location__review {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.location__review:hover {
+  border: 1px solid #cecc41;
+  background: #d9d9d9;
+  border-radius: 5px;
+}
+
+.location__review h3 {
+  margin: 2px;
+  font-size: 1.2rem;
+}
+
+.location__review span {
+  font-size: 0.75rem;
+}
