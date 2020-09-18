@@ -8,9 +8,9 @@ export const addReview = review => {
 }
 
 export const createReview = (newReviewFormData) => {
-  console.log("action form", newReviewFormData.locationMarker.location)
+  console.log("action form", newReviewFormData)
     const data = {
-        objectid: newReviewFormData.objectid,
+        objectid: newReviewFormData.locationMarker.objectid,
         content: newReviewFormData.content,
         user_id: newReviewFormData.userId,
         location: newReviewFormData.locationMarker.location,
