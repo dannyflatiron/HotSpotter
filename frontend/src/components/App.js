@@ -8,7 +8,7 @@ import {
   setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
-import { getReviewedMarkers } from '../actions/reviews/getReviewedMarkers.js'
+import { getReviewedMarkers } from "../actions/reviews/getReviewedMarkers.js";
 import NavBar from "./NavBar.js";
 import Review from "./Review.js";
 import Home from "./Home.js";
@@ -21,38 +21,108 @@ import history from "../history";
 import mapStyles from "../mapStyles.js";
 import NewReviewForm from "./NewReviewForm.js";
 import InfoWindowEx from "./InfoWindowEx.js";
+import LocationReviews from "./location-review";
 import { Provider } from "react-redux";
 import { store } from "../index.js";
+const placeReviews = {
+  reviews: [],
+};
+
+const placeReviews1 = {
+  id: 1,
+  location: "8 THOMAS S BOYLAND STREET",
+  name: "Saratoga - Brooklyn Public Library",
+  ssid: "BPLUNWIRED",
+  price: "Free",
+  reviews: [
+    {
+      id: 1,
+      content: "Please work I hope you do ",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:21:49.805Z",
+      updated_at: "2020-09-18T01:21:49.805Z",
+    },
+    {
+      id: 2,
+      content: "This is a second test",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:22:18.001Z",
+      updated_at: "2020-09-18T01:22:18.001Z",
+    },
+    {
+      id: 3,
+      content: "Please work I hope you do ",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:21:49.805Z",
+      updated_at: "2020-09-18T01:21:49.805Z",
+    },
+    {
+      id: 4,
+      content: "Please work I hope you do ",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:21:49.805Z",
+      updated_at: "2020-09-18T01:21:49.805Z",
+    },
+    {
+      id: 6,
+      content: "Please work I hope you do ",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:21:49.805Z",
+      updated_at: "2020-09-18T01:21:49.805Z",
+    },
+    {
+      id: 7,
+      content: "Please work I hope you do ",
+      user_id: 1,
+      location_id: 1,
+      created_at: "2020-09-18T01:21:49.805Z",
+      updated_at: "2020-09-18T01:21:49.805Z",
+    },
+  ],
+};
 
 class App extends React.Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    readReviews: false,
   };
 
   componentDidMount() {
     this.props.getCurrentUser();
     this.props.getLocations();
-    this.props.getReviewedMarkers()
+    this.props.getReviewedMarkers();
   }
 
   onMarkerClick = (props, marker, e) => {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true,
-    }, () => {
-      console.log("this.state", this.state.selectedPlace)
-      const currentMarker= {
-        objectid: this.state.selectedPlace.objectid,
-        location: this.state.selectedPlace.location,
-        name: this.state.selectedPlace.name,
-        ssid: this.state.selectedPlace.ssid,
-        type: this.state.selectedPlace.type
+    this.setState(
+      {
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true,
+      },
+      () => {
+        console.log("this.state", this.state.selectedPlace);
+        const currentMarker = {
+          objectid: this.state.selectedPlace.objectid,
+          location: this.state.selectedPlace.location,
+          name: this.state.selectedPlace.name,
+          ssid: this.state.selectedPlace.ssid,
+          type: this.state.selectedPlace.type,
+        };
+        this.props.setLocationMarker(currentMarker);
       }
-      this.props.setLocationMarker(currentMarker)
-    });
+    );
+  };
+
+  handleReadReviewClick = () => {
+    this.setState((prevState) => ({ readReviews: !prevState.readReviews }));
   };
 
   onMapClicked = (props) => {
@@ -99,7 +169,7 @@ class App extends React.Component {
                 icon={{ url: require("../wifiSignal.svg") }}
                 position={{ lat: location.latitude, lng: location.longitude }}
                 onClick={this.onMarkerClick}
-                objectid ={location.objectid}
+                objectid={location.objectid}
                 name={location.name}
                 type={location.type}
                 ssid={location.ssid}
@@ -124,10 +194,20 @@ class App extends React.Component {
                 <Provider store={store}>
                   <NewReviewForm />
                 </Provider>
+                <button onClick={this.handleReadReviewClick}>
+                  {" "}
+                  Read Reviews{" "}
+                </button>
               </div>
             </React.Fragment>
           </InfoWindowEx>
         </Map>
+        {this.state.readReviews && placeReviews.reviews.length && (
+          <LocationReviews
+            placeReviews={placeReviews}
+            handleReadReviewClick={this.handleReadReviewClick}
+          />
+        )}
         <Router history={history}>
           {loggedIn ? <NavBar /> : <Home />}
           <Route path='/login' exact component={Login} />
