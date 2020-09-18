@@ -1,6 +1,6 @@
 import { resetLoginForm } from "./loginForm.js"
 import { resetSignupForm } from "./signupForm.js"
-import { getReviews } from "../reviews/getReviews.js"
+import { getReviewedMarkers } from "../reviews/getReviewedMarkers.js"
 import { clearReviews } from "../reviews/clearReviews.js"
 import { resetNewReviewForm } from "../reviews/newReviewForm.js"
 import history from '../../history.js';
@@ -34,7 +34,7 @@ export const signup = (signupFormData ) => {
                 alert(user.error)
             } else {
                 dispatch(setCurrentUser(user.data))
-                dispatch(getReviews())
+                dispatch(getReviewedMarkers())
                 dispatch(resetSignupForm())
                 history.push('/')
             }
@@ -59,7 +59,7 @@ export const login = (loginFormData ) => {
                 alert(user.error)
             } else {
                 dispatch(setCurrentUser(user.data))
-                dispatch(getReviews())
+                dispatch(getReviewedMarkers())
                 dispatch(resetLoginForm())
                 history.push('/')
             }
@@ -104,7 +104,7 @@ export const getCurrentUser = () => {
             } else {
                 dispatch(setCurrentUser(response.data))
                 dispatch(resetLoginForm())
-                dispatch(getReviews())
+                dispatch(getReviewedMarkers())
             }
         })
         .catch(console.log)

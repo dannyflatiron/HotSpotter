@@ -1,18 +1,17 @@
-// import React from 'react'
-// import { connect } from 'react-redux'
-// import { getReviews } from '../actions/reviews/getReviews.js'
+import React from 'react'
+import { connect } from 'react-redux'
 
 
-// const ReviewButton = () => {
+const ReviewButton = () => {
 
-//     const handleOnClick = event => {
-//         event.preventDefault()
-//         getReviews()
-//     }
+    const handleOnClick = event => {
+        event.preventDefault()
+        
+    }
 
-//     return (
-//         <button onClick={handleOnClick}>All Reviews</button>
-//     )
-// }
+    return (
+        <button onClick={handleOnClick}>All Reviews</button>
+    )
+}
 
-// export default connect(null, { getReviews })(ReviewButton)
+export default connect(null, {  })(ReviewButton)

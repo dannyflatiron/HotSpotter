@@ -8,7 +8,7 @@ import {
   setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
-import { getReviews } from '../actions/reviews/getReviews.js'
+import { getReviewedMarkers } from '../actions/reviews/getReviewedMarkers.js'
 import NavBar from "./NavBar.js";
 import Review from "./Review.js";
 import Home from "./Home.js";
@@ -34,7 +34,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.getCurrentUser();
     this.props.getLocations();
-    this.props.getReviews()
+    this.props.getReviewedMarkers()
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -123,7 +123,6 @@ class App extends React.Component {
                 </p>
                 <Provider store={store}>
                   <NewReviewForm />
-                  <Review/>
                 </Provider>
               </div>
             </React.Fragment>
@@ -169,5 +168,5 @@ export default connect(mapStateToProps, {
   getCurrentUser,
   getLocations,
   setLocationMarker,
-  getReviews,
+  getReviewedMarkers,
 })(WrappedContainer);

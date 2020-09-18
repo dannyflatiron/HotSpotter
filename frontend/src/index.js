@@ -11,6 +11,7 @@ import signupForm from "./reducers/signupForm";
 import newReviewForm from "./reducers/newReviewForm.js";
 import locations from "./reducers/locations.js";
 import locationMarker from "./reducers/locationMarker.js";
+import reviewedMarkers from "./reducers/reviewedMarkers.js";
 
 const reducer = combineReducers({
   currentUser,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   newReviewForm,
   locations,
   locationMarker,
+  reviewedMarkers,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

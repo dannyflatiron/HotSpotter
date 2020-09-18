@@ -1,13 +1,13 @@
-export const setReviews = reviews => {
+export const setReviewedMarkers = reviews => {
     return {
-        type: "SET_REVIEWS",
+        type: "SET_REVIEWED_MARKERS",
         reviews
     }
 }
 
-export const getReviews = () => {
+export const getReviewedMarkers = () => {
     return dispatch => {
-        return fetch("http://localhost:3000/api//v1/reviews", {
+        return fetch("http://localhost:3000/api//v1/locations", {
             credentials: "include",
             method: "GET",
             headers: {
@@ -19,7 +19,7 @@ export const getReviews = () => {
             // if (response.error) {
             //     alert(response.error)
             // } else {
-                dispatch(setReviews(response))
+                dispatch(setReviewedMarkers(response))
             // }
         })
         .catch(console.log)
