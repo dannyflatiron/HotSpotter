@@ -10,22 +10,23 @@ const NewReviewForm = ({
   createReview,
   userId,
   resetNewReviewForm,
+  locationMarker,
 }) => {
   const handleChange = (event) => {
     let content = event.target.value;
-
     const formData = {
       content,
       userId,
+      locationMarker
     };
-
+    console.log(formData)
     updateNewReviewForm(formData);
   };
 
   const handleSubmit = (event, userId) => {
     // userId might not be needed since the state of form carries the userId already
     event.preventDefault();
-    createReview(newReviewFormData, userId);
+    createReview(newReviewFormData);
     resetNewReviewForm();
   };
 
@@ -46,10 +47,12 @@ const NewReviewForm = ({
 };
 
 const mapStateToProps = (state) => {
+  const locationMarker = state.locationMarker
   const userId = state.currentUser ? state.currentUser.id : "";
   return {
     newReviewFormData: state.newReviewForm,
     userId,
+    locationMarker
   };
 };
 
