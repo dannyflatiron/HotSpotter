@@ -35,11 +35,19 @@ class App extends React.Component {
     this.props.getLocations();
   }
 
-  onMarkerClick = (props, marker, e, location) => {
+  onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
+    }, () => {
+      const currentMarker= {
+        location: this.state.selectedPlace.location,
+        name: this.state.selectedPlace.name,
+        ssid: this.state.selectedPlace.ssid,
+        type: this.state.selectedPlace.type
+      }
+      this.props.setLocationMarker(currentMarker)
     });
   };
 
@@ -130,7 +138,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ currentUser, locations, locationMarker }) => {
-  console.log("mapStateToProps", locationMarker);
+  // console.log("mapStateToProps", locationMarker);
   return {
     loggedIn: !!currentUser,
     locationMarker,
