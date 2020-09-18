@@ -8,6 +8,7 @@ import {
   setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
+import { getReviews } from '../actions/reviews/getReviews.js'
 import NavBar from "./NavBar.js";
 import Review from "./Review.js";
 import Home from "./Home.js";
@@ -33,6 +34,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.getCurrentUser();
     this.props.getLocations();
+    this.props.getReviews()
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -41,7 +43,9 @@ class App extends React.Component {
       activeMarker: marker,
       showingInfoWindow: true,
     }, () => {
+      console.log("this.state", this.state.selectedPlace)
       const currentMarker= {
+        objectid: this.state.selectedPlace.objectid,
         location: this.state.selectedPlace.location,
         name: this.state.selectedPlace.name,
         ssid: this.state.selectedPlace.ssid,
@@ -95,6 +99,7 @@ class App extends React.Component {
                 icon={{ url: require("../wifiSignal.svg") }}
                 position={{ lat: location.latitude, lng: location.longitude }}
                 onClick={this.onMarkerClick}
+                objectid ={location.objectid}
                 name={location.name}
                 type={location.type}
                 ssid={location.ssid}
@@ -164,4 +169,5 @@ export default connect(mapStateToProps, {
   getCurrentUser,
   getLocations,
   setLocationMarker,
+  getReviews,
 })(WrappedContainer);

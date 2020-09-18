@@ -10,6 +10,7 @@ export const addReview = review => {
 export const createReview = (newReviewFormData) => {
   console.log("action form", newReviewFormData.locationMarker.location)
     const data = {
+        objectid: newReviewFormData.objectid,
         content: newReviewFormData.content,
         user_id: newReviewFormData.userId,
         location: newReviewFormData.locationMarker.location,
