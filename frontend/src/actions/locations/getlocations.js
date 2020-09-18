@@ -5,7 +5,8 @@ export const setLocations = locations => {
     }
 }
 
-export const setLocationMarker = (location, event) => {
+export const setLocationMarker = (location) => {
+    console.log("inside setLocationMarker action creator", location)
     return {
         type: "SET_LOCATION_MARKER",
         location
