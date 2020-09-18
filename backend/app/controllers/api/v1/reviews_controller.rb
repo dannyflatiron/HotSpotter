@@ -16,7 +16,7 @@ class Api::V1::ReviewsController < ApplicationController
     location = Location.find_or_create_by(name: params[:name], location: params[:location], ssid: params[:ssid], price: params[:price] )
     #   review = location.reviews.build.(content: params[:content], user_id: params[:user_id])
     review = Review.find_or_create_by(content: params[:content], user_id: params[:user_id])
-    review.location_id = location.id
+    review.location_id = params[:objectid]
     location.reviews.push(review)
       if review.save && location.save
         #   render json: ReviewSerializer.new(review).serialized_json
