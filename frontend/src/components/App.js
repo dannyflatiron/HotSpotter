@@ -8,7 +8,7 @@ import {
   setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
-import { getReviewedMarkers } from "../actions/reviews/getReviewedMarkers.js";
+import { getReviewedMarkers, getMarker } from "../actions/reviews/getReviewedMarkers.js";
 import NavBar from "./NavBar.js";
 import Review from "./Review.js";
 import Home from "./Home.js";
@@ -24,67 +24,8 @@ import InfoWindowEx from "./InfoWindowEx.js";
 import LocationReviews from "./location-review";
 import { Provider } from "react-redux";
 import { store } from "../index.js";
-const placeReviews = {
-  reviews: [],
-};
-
-const placeReviews1 = {
-  id: 1,
-  location: "8 THOMAS S BOYLAND STREET",
-  name: "Saratoga - Brooklyn Public Library",
-  ssid: "BPLUNWIRED",
-  price: "Free",
-  reviews: [
-    {
-      id: 1,
-      content: "Please work I hope you do ",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:21:49.805Z",
-      updated_at: "2020-09-18T01:21:49.805Z",
-    },
-    {
-      id: 2,
-      content: "This is a second test",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:22:18.001Z",
-      updated_at: "2020-09-18T01:22:18.001Z",
-    },
-    {
-      id: 3,
-      content: "Please work I hope you do ",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:21:49.805Z",
-      updated_at: "2020-09-18T01:21:49.805Z",
-    },
-    {
-      id: 4,
-      content: "Please work I hope you do ",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:21:49.805Z",
-      updated_at: "2020-09-18T01:21:49.805Z",
-    },
-    {
-      id: 6,
-      content: "Please work I hope you do ",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:21:49.805Z",
-      updated_at: "2020-09-18T01:21:49.805Z",
-    },
-    {
-      id: 7,
-      content: "Please work I hope you do ",
-      user_id: 1,
-      location_id: 1,
-      created_at: "2020-09-18T01:21:49.805Z",
-      updated_at: "2020-09-18T01:21:49.805Z",
-    },
-  ],
-};
+import locationMarker from "../reducers/locationMarker";
+import reviewedMarker from "../reducers/reviewedMarker";
 
 class App extends React.Component {
   state = {
@@ -98,6 +39,7 @@ class App extends React.Component {
     this.props.getCurrentUser();
     this.props.getLocations();
     this.props.getReviewedMarkers();
+
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -106,9 +48,9 @@ class App extends React.Component {
         selectedPlace: props,
         activeMarker: marker,
         showingInfoWindow: true,
+        readReviews: false
       },
       () => {
-        console.log("this.state", this.state.selectedPlace);
         const currentMarker = {
           objectid: this.state.selectedPlace.objectid,
           location: this.state.selectedPlace.location,
@@ -117,8 +59,17 @@ class App extends React.Component {
           type: this.state.selectedPlace.type,
         };
         this.props.setLocationMarker(currentMarker);
+
+        const e = this.props.locations.find(marker => marker.location == currentMarker.location)
+        console.log("e", e)
+        const a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.location == e.location)
+        console.log("a", a)
+        if (a) {
+          this.props.getMarker(a.id)
+        }
       }
     );
+
   };
 
   handleReadReviewClick = () => {
@@ -202,9 +153,16 @@ class App extends React.Component {
             </React.Fragment>
           </InfoWindowEx>
         </Map>
-        {this.state.readReviews && placeReviews.reviews.length && (
+        {/* {this.state.readReviews && placeReviews.reviews.length && (
           <LocationReviews
             placeReviews={placeReviews}
+            handleReadReviewClick={this.handleReadReviewClick}
+          />
+        )} */}
+        {/* I have access to this.props.reviewedMarker so how do I pass it to LocationReviews component */}
+        {this.state.readReviews && this.props.reviewedMarker && (
+          <LocationReviews
+            placeReviews={this.props.reviewedMarker}
             handleReadReviewClick={this.handleReadReviewClick}
           />
         )}
@@ -221,12 +179,14 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ currentUser, locations, locationMarker }) => {
+const mapStateToProps = ({ currentUser, locations, locationMarker, reviewedMarkers, reviewedMarker }) => {
   // console.log("mapStateToProps", locationMarker);
   return {
     loggedIn: !!currentUser,
     locationMarker,
     locations,
+    reviewedMarkers,
+    reviewedMarker
   };
 };
 
@@ -249,4 +209,5 @@ export default connect(mapStateToProps, {
   getLocations,
   setLocationMarker,
   getReviewedMarkers,
+  getMarker,
 })(WrappedContainer);
