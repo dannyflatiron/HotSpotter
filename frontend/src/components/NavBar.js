@@ -12,7 +12,7 @@ const NavBar = ({currentUser, loggedIn, logout}) => {
         {/* {loggedIn ? <><WelcomeMessage user={currentUser}/><Logout to="/" /></> : <Home/>} */}
         <WelcomeMessage user={currentUser}/> 
         {/* <Link className="log" to="/locations">Map  |  </Link>         */}
-        {/* <Link  className="log" to="/reviews" >View All Reviews  |  </Link> */}
+        <Link  className="log" to="/reviews" >View All Reviews  |  </Link>
         {/* <Link  className="log" to="/reviews/new">New Review  |  </Link>   */}
         <Link className="log" onClick={() => logout(currentUser.id)}>Log Out</Link>
       </div>
