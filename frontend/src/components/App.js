@@ -8,7 +8,7 @@ import {
   setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
-import { getReviewedMarkers, getMarker } from "../actions/reviews/getReviewedMarkers.js";
+import { getReviewedMarkers, getMarker, clearMarker } from "../actions/reviews/getReviewedMarkers.js";
 import NavBar from "./NavBar.js";
 import Review from "./Review.js";
 import Home from "./Home.js";
@@ -62,11 +62,11 @@ class App extends React.Component {
 
         const e = this.props.locations.find(marker => marker.location == currentMarker.location)
         console.log("e", e)
-        const a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.location == e.location)
+        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.location == e.location)
         console.log("a", a)
-        if (a) {
-          this.props.getMarker(a.id)
-        }
+        a && this.props.getMarker(a.id)
+      }, () => {
+        // this.props.getReviewedMarkers()
       }
     );
 
@@ -210,4 +210,5 @@ export default connect(mapStateToProps, {
   setLocationMarker,
   getReviewedMarkers,
   getMarker,
+  clearMarker,
 })(WrappedContainer);
