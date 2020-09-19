@@ -26,7 +26,7 @@ export const getReviewedMarkers = () => {
    console.log("is this working")
   // THIS WORKS LEAVE IT ALONE
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api//v1/locations/`, {
+    return fetch(`http://localhost:3000/api/v1/locations/`, {
       credentials: "include",
       method: "GET",
       headers: {
