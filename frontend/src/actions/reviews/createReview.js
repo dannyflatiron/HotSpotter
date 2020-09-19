@@ -8,7 +8,6 @@ export const addReview = review => {
 }
 
 export const createReview = (newReviewFormData) => {
-  console.log("action form", newReviewFormData)
     const data = {
         objectid: newReviewFormData.locationMarker.objectid,
         content: newReviewFormData.content,
@@ -30,8 +29,8 @@ export const createReview = (newReviewFormData) => {
       })
         .then(r => r.json())
         .then(resp => {
-          if (resp.error) {
-            alert(resp.error)
+          if (resp.reviewerror) {
+            alert(resp.reviewerror)
           } else {
             dispatch(addReview(resp))
             history.push('/reviews')
