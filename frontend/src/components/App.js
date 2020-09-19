@@ -50,7 +50,7 @@ class App extends React.Component {
         showingInfoWindow: true,
         readReviews: false
       },
-      () => {
+      async () => {
         const currentMarker = {
           objectid: this.state.selectedPlace.objectid,
           location: this.state.selectedPlace.location,
@@ -58,13 +58,15 @@ class App extends React.Component {
           ssid: this.state.selectedPlace.ssid,
           type: this.state.selectedPlace.type,
         };
-        this.props.setLocationMarker(currentMarker);
+        await this.props.setLocationMarker(currentMarker);
 
         const e = this.props.locations.find(marker => marker.location == currentMarker.location)
         console.log("e", e)
         let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.location == e.location)
         console.log("a", a)
-        a && this.props.getMarker(a.id)
+        // add objectid column on backend
+        // a ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
+        a ? this.props.getMarker(a.id) : this.props.clearMarker()
       }, () => {
         // this.props.getReviewedMarkers()
       }
@@ -160,7 +162,7 @@ class App extends React.Component {
           />
         )} */}
         {/* I have access to this.props.reviewedMarker so how do I pass it to LocationReviews component */}
-        {this.state.readReviews && this.props.reviewedMarker.reviewedMarker.length && (
+        {this.state.readReviews && this.props.reviewedMarker && this.props.reviewedMarker.reviews && (
           <LocationReviews
             placeReviews={this.props.reviewedMarker}
             handleReadReviewClick={this.handleReadReviewClick}
