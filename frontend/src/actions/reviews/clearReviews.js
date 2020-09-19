@@ -1,5 +1,5 @@
-export const clearReviews = () => {
-    return {
-        type: "CLEAR_REVIEWS"
-    }
-}
+// export const clearReviews = () => {
+//     return {
+//         type: "CLEAR_REVIEWS"
+//     }
+// }
