@@ -160,7 +160,7 @@ class App extends React.Component {
           />
         )} */}
         {/* I have access to this.props.reviewedMarker so how do I pass it to LocationReviews component */}
-        {this.state.readReviews && this.props.reviewedMarker && (
+        {this.state.readReviews && this.props.reviewedMarker.reviewedMarker.length && (
           <LocationReviews
             placeReviews={this.props.reviewedMarker}
             handleReadReviewClick={this.handleReadReviewClick}
