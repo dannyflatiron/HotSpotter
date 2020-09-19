@@ -1,7 +1,7 @@
 import React from "react";
-import { updateNewReviewForm } from "../actions/reviews/newReviewForm";
-import { resetNewReviewForm } from "../actions/reviews/newReviewForm";
+import { updateNewReviewForm, resetNewReviewForm } from "../actions/reviews/newReviewForm";
 import { createReview } from "../actions/reviews/createReview.js";
+import {  getMarker } from "../actions/reviews/getReviewedMarkers.js";
 import { connect } from "react-redux";
 
 const NewReviewForm = ({
@@ -11,6 +11,8 @@ const NewReviewForm = ({
   userId,
   resetNewReviewForm,
   locationMarker,
+  reviewedMarker,
+  getMarker
 }) => {
   const handleChange = (event) => {
     let content = event.target.value;
@@ -23,9 +25,10 @@ const NewReviewForm = ({
     updateNewReviewForm(formData);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    createReview(newReviewFormData);
+    await createReview(newReviewFormData);
+    await getMarker(reviewedMarker.id)
     resetNewReviewForm();
   };
 
@@ -52,6 +55,7 @@ const mapStateToProps = (state) => {
     newReviewFormData: state.newReviewForm,
     userId,
     locationMarker,
+    reviewedMarker: state.reviewedMarker
   };
 };
 
@@ -59,4 +63,5 @@ export default connect(mapStateToProps, {
   updateNewReviewForm,
   createReview,
   resetNewReviewForm,
+  getMarker,
 })(NewReviewForm);
