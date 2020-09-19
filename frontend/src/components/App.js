@@ -172,6 +172,7 @@ class App extends React.Component {
           {loggedIn ? <NavBar /> : <Home />}
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
+          <Route path='/home' exact component={Home} />
           <Route path='/reviews' exact component={Review} />
           <Route path='/reviews/new' exact component={NewReviewForm} />
           <Route path='/navbar' exact component={NavBar} />
