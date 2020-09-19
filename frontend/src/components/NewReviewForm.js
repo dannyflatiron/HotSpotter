@@ -23,7 +23,6 @@ const NewReviewForm = ({
       userId,
       locationMarker,
     };
-    console.log(formData);
     updateNewReviewForm(formData);
   };
 
