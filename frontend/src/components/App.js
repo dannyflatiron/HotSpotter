@@ -60,15 +60,8 @@ class App extends React.Component {
         };
         await this.props.setLocationMarker(currentMarker);
 
-        const e = this.props.locations.find(marker => marker.location == currentMarker.location)
-        console.log("e", e)
-        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.location == e.location)
-        console.log("a", a)
-        // add objectid column on backend
-        // a ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
-        a ? this.props.getMarker(a.id) : this.props.clearMarker()
-      }, () => {
-        // this.props.getReviewedMarkers()
+        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.object_id == currentMarker.objectid)
+        a ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
       }
     );
 
@@ -155,13 +148,6 @@ class App extends React.Component {
             </React.Fragment>
           </InfoWindowEx>
         </Map>
-        {/* {this.state.readReviews && placeReviews.reviews.length && (
-          <LocationReviews
-            placeReviews={placeReviews}
-            handleReadReviewClick={this.handleReadReviewClick}
-          />
-        )} */}
-        {/* I have access to this.props.reviewedMarker so how do I pass it to LocationReviews component */}
         {this.state.readReviews && this.props.reviewedMarker && this.props.reviewedMarker.reviews && (
           <LocationReviews
             placeReviews={this.props.reviewedMarker}
@@ -183,7 +169,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ currentUser, locations, locationMarker, reviewedMarkers, reviewedMarker }) => {
-  // console.log("mapStateToProps", locationMarker);
   return {
     loggedIn: !!currentUser,
     locationMarker,
