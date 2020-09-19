@@ -23,11 +23,11 @@ export const getLocations = () => {
         })
         .then(response => response.json())
         .then(response => {
-            // if (response.error) {
-            //     alert(response.error)
-            // } else {
-                dispatch(setLocations(response.slice(0,50)))
-            // }
+            if (response.error) {
+                alert(response.error)
+            } else {
+                dispatch(setLocations(response.slice(0,80)))
+            }
         })
         .catch(console.log)
     }
