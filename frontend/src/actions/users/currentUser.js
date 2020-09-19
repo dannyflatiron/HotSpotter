@@ -77,7 +77,7 @@ export const logout = (id, callback) => {
             }
         )
             .then(data => {
-                dispatch(clearReviews())
+                // dispatch(clearReviews())
                 dispatch(resetNewReviewForm())
                 dispatch(clearCurrentUser())
                 // callback()
