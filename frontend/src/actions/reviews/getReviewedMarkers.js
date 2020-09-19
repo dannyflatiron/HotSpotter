@@ -1,4 +1,5 @@
 export const setReviewedMarkers = (reviews) => {
+  console.log("after submit fetch", reviews)
   return {
     type: "SET_REVIEWED_MARKERS",
     reviews,
@@ -13,7 +14,16 @@ export const setReviewedMarker = (review) => {
   };
 };
 
+export const clearMarker = () => {
+  // THIS WORKS LEAVE IT ALONE
+return {
+  type: "CLEAR_MARKER",
+};
+};
+
+
 export const getReviewedMarkers = () => {
+   console.log("is this working")
   // THIS WORKS LEAVE IT ALONE
   return (dispatch) => {
     return fetch(`http://localhost:3000/api//v1/locations/`, {
@@ -25,6 +35,7 @@ export const getReviewedMarkers = () => {
     })
       .then((response) => response.json())
       .then((response) => {
+        console.log("after submit", response)
         // if (response.error) {
         //     alert(response.error)
         // } else {
@@ -39,6 +50,7 @@ export const getReviewedMarkers = () => {
 
 export const getMarker = (id) => {
   // THIS WORKS LEAVE IT ALONE
+  console.log("what happens after click ID: ", id)
   return (dispatch) => {
     return fetch(`http://localhost:3000/api//v1/locations/${id}/`, {
       credentials: "include",
@@ -49,6 +61,7 @@ export const getMarker = (id) => {
     })
       .then((response) => response.json())
       .then((response) => {
+        console.log("what happens after click: ", response)
         const t = response.data.attributes
           dispatch(setReviewedMarker(t))
       })
