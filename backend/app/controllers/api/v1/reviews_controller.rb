@@ -13,10 +13,10 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def create
-    location = Location.find_or_create_by(name: params[:name], location: params[:location], ssid: params[:ssid], price: params[:price] )
+    location = Location.find_or_create_by(name: params[:name], location: params[:location], ssid: params[:ssid], price: params[:price], object_id: params[:objectid] )
     #   review = location.reviews.build.(content: params[:content], user_id: params[:user_id])
     review = Review.find_or_create_by(content: params[:content], user_id: params[:user_id])
-    review.location_id = params[:objectid]
+    review.location_id = location.id
     location.reviews.push(review)
       if review.save && location.save
         #   render json: ReviewSerializer.new(review).serialized_json
@@ -27,7 +27,6 @@ class Api::V1::ReviewsController < ApplicationController
               locationerror: location.errors.full_messages
             }
             render json: resp, status: :unprocessable_entity
-            binding.pry
       end
   end
 
