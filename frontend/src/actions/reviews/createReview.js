@@ -17,7 +17,6 @@ export const createReview = (newReviewFormData) => {
         ssid: newReviewFormData.locationMarker.ssid,
         price: newReviewFormData.locationMarker.type
     }
-    console.log("data", data)
     return dispatch => {
       return fetch("http://localhost:3000/api/v1/reviews", {
         credentials: "include",
