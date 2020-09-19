@@ -23,7 +23,8 @@ class Api::V1::ReviewsController < ApplicationController
           render json: LocationSerializer.new(location).serialized_json
       else
           resp = {
-              error: review.errors.full_messages
+              reviewerror: review.errors.full_messages,
+              locationerror: location.errors.full_messages
             }
             render json: resp, status: :unprocessable_entity
             binding.pry
