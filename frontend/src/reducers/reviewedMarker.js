@@ -1,10 +1,13 @@
-const initialState = null
+const initialState = {
+    reviewedMarker: {}
+}
 
 export default (state = initialState, action) => {
-      // THIS WORKS LEAVE IT ALONE
     switch (action.type) {
         case "SET_REVIEWED_MARKER":
-            return action.review;
+            return state.reviewedMarker =  action.review;
+        case "CLEAR_MARKER":
+            return state = initialState;
         default: 
             return state;
     };
