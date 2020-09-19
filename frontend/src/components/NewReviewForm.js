@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { updateNewReviewForm, resetNewReviewForm } from "../actions/reviews/newReviewForm";
 import { createReview } from "../actions/reviews/createReview.js";
 import {  getMarker } from "../actions/reviews/getReviewedMarkers.js";
@@ -14,8 +14,10 @@ const NewReviewForm = ({
   reviewedMarker,
   getMarker
 }) => {
+  const [isError, setError] = useState(false);
   const handleChange = (event) => {
     let content = event.target.value;
+  content ? setError(false) : setError(true);
     const formData = {
       content,
       userId,
@@ -27,8 +29,12 @@ const NewReviewForm = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(!newReviewFormData.content) {
+      setError(true);
+      return;
+    }
     await createReview(newReviewFormData);
-    await getMarker(reviewedMarker.id)
+    await getMarker(locationMarker.objectid)
     resetNewReviewForm();
   };
 
@@ -41,6 +47,7 @@ const NewReviewForm = ({
         value={newReviewFormData.content}
         placeholder='Create Review'
       />
+      {isError && <p> Please fill to submit the review</p>} 
       <input className='submit' type='submit' value='Submit Review' />
     </form>
   ) : (
