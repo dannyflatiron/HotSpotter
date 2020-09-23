@@ -6,7 +6,6 @@ export const setLocations = locations => {
 }
 
 export const setLocationMarker = (location) => {
-    console.log("inside setLocationMarker action creator", location)
     return {
         type: "SET_LOCATION_MARKER",
         location
@@ -26,7 +25,7 @@ export const getLocations = () => {
             if (response.error) {
                 alert(response.error)
             } else {
-                dispatch(setLocations(response.slice(0,80)))
+                dispatch(setLocations(response.slice(0,300)))
             }
         })
         .catch(console.log)
