@@ -14,8 +14,8 @@ function LocationReviews({ placeReviews, handleReadReviewClick }) {
 
   const { name, location, reviews } = placeReviews;
   return (
-    <div class='location'>
-      <div class='location__title'>
+    <div className='location'>
+      <div className='location__title'>
         <h2> Reviews </h2>
         <button onClick={handleReadReviewClick}>x</button>
       </div>
@@ -24,7 +24,7 @@ function LocationReviews({ placeReviews, handleReadReviewClick }) {
       {/* {reviews.length &&
         reviews.map((review) => {
           return (
-            <div key={review.id} class='location__review'>
+            <div key={review.id} className='location__review'>
               <h3>{review.content}</h3>
               <span> Written on : {formattedDate(review.created_at)}</span>
             </div>
@@ -33,7 +33,7 @@ function LocationReviews({ placeReviews, handleReadReviewClick }) {
         {reviews && reviews.length > 0 ?
         reviews.map((review) => {
           return (
-            <div key={review.id} class='location__review'>
+            <div key={review.id} className='location__review'>
               <h3>{review.content}</h3>
               <span> Written on : {formattedDate(review.created_at)}</span>
             </div>
