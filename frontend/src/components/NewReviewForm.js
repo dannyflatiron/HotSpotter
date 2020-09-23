@@ -3,6 +3,7 @@ import { updateNewReviewForm, resetNewReviewForm } from "../actions/reviews/newR
 import { createReview } from "../actions/reviews/createReview.js";
 import {  getMarker } from "../actions/reviews/getReviewedMarkers.js";
 import { connect } from "react-redux";
+import ContentInput from "./ContentInput.js";
 
 const NewReviewForm = ({
   newReviewFormData,
@@ -15,7 +16,7 @@ const NewReviewForm = ({
   getMarker
 }) => {
   const [isError, setError] = useState(false);
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     let content = event.target.value;
   content ? setError(false) : setError(true);
     const formData = {
@@ -23,6 +24,7 @@ const NewReviewForm = ({
       userId,
       locationMarker,
     };
+    console.log("formData", formData)
     updateNewReviewForm(formData);
   };
 
@@ -39,10 +41,10 @@ const NewReviewForm = ({
 
   return userId ? (
     <form onSubmit={handleSubmit}>
-      <input
+      <ContentInput
         className='content reviewInput'
         name='content'
-        onChange={handleChange}
+        onChange={handleInputChange}
         value={newReviewFormData.content}
         placeholder='Create Review'
       />
