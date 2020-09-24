@@ -6,8 +6,6 @@ export default (state = initialState, action) => {
             return action.reviews
         case "ADD_REVIEW":
             return state.concat(action.review.data.attributes)
-        case "CLEAR_REVIEWS":
-            return []
         default:
             return state;
     };
