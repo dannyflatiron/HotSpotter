@@ -151,7 +151,6 @@ class App extends React.Component {
           <Route path='/signup' exact component={Signup} />
           <Route path='/home' exact component={Home} />
           <Route path='/reviews/new' exact component={NewReviewForm} />
-          <Route path='/navbar' exact component={NavBar} />
         </Router>
       </div>
     );
