@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import { connect } from "react-redux";
-import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { getCurrentUser } from "../actions/users/currentUser.js";
 import {
   getLocations,
@@ -54,7 +54,7 @@ class App extends React.Component {
         };
         await this.props.setLocationMarker(currentMarker);
 
-        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.object_id == currentMarker.objectid)
+        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.object_id === currentMarker.objectid)
         a ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
       }
     );
@@ -83,9 +83,6 @@ class App extends React.Component {
     const center = {
       lat: 40.678177,
       lng: -73.94416,
-    };
-    const options = {
-      disableDefaultUI: true,
     };
 
     return (

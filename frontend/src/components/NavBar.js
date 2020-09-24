@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import WelcomeMessage from "./WelcomeMessage.js"
 import { Link } from 'react-router-dom'
 import { logout } from '../actions/users/currentUser.js'
-import { useHistory } from "react-router-dom"
 
 const NavBar = ({currentUser, loggedIn, logout}) => {
 
