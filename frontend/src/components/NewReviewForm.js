@@ -12,7 +12,6 @@ const NewReviewForm = ({
   userId,
   resetNewReviewForm,
   locationMarker,
-  reviewedMarker,
   getMarker
 }) => {
   const [isError, setError] = useState(false);
@@ -63,7 +62,6 @@ const mapStateToProps = (state) => {
     newReviewFormData: state.newReviewForm,
     userId,
     locationMarker,
-    reviewedMarker: state.reviewedMarker
   };
 };
 

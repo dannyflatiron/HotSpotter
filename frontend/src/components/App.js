@@ -5,17 +5,13 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import { getCurrentUser } from "../actions/users/currentUser.js";
 import {
   getLocations,
-  setLocations,
   setLocationMarker,
 } from "../actions/locations/getlocations.js";
 import { getReviewedMarkers, getMarker, clearMarker } from "../actions/reviews/getReviewedMarkers.js";
 import NavBar from "./NavBar.js";
-import Review from "./Review.js";
 import Home from "./Home.js";
 import Login from "./Login.js";
 import Signup from "./Signup.js";
-// import NewReview from "./NewReviewForm.js";
-import ReviewButton from "./ReviewButton.js";
 import { Router, Route } from "react-router-dom";
 import history from "../history";
 import mapStyles from "../mapStyles.js";
@@ -24,8 +20,6 @@ import InfoWindowEx from "./InfoWindowEx.js";
 import LocationReviews from "./location-review";
 import { Provider } from "react-redux";
 import { store } from "../index.js";
-import locationMarker from "../reducers/locationMarker";
-import reviewedMarker from "../reducers/reviewedMarker";
 
 class App extends React.Component {
   state = {
@@ -159,7 +153,6 @@ class App extends React.Component {
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
           <Route path='/home' exact component={Home} />
-          <Route path='/reviews' exact component={Review} />
           <Route path='/reviews/new' exact component={NewReviewForm} />
           <Route path='/navbar' exact component={NavBar} />
         </Router>

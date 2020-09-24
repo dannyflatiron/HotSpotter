@@ -21,15 +21,6 @@ function LocationReviews({ placeReviews, handleReadReviewClick }) {
       </div>
       <h3> {name} </h3>
       <h4> {location}</h4>
-      {/* {reviews.length &&
-        reviews.map((review) => {
-          return (
-            <div key={review.id} className='location__review'>
-              <h3>{review.content}</h3>
-              <span> Written on : {formattedDate(review.created_at)}</span>
-            </div>
-          );
-        })} */}
         {reviews && reviews.length > 0 ?
         reviews.map((review) => {
           return (
