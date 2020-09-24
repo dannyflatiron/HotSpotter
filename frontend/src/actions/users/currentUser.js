@@ -1,7 +1,6 @@
 import { resetLoginForm } from "./loginForm.js"
 import { resetSignupForm } from "./signupForm.js"
 import { getReviewedMarkers } from "../reviews/getReviewedMarkers.js"
-import { clearReviews } from "../reviews/clearReviews.js"
 import { resetNewReviewForm } from "../reviews/newReviewForm.js"
 import history from '../../history.js';
 
@@ -69,7 +68,6 @@ export const login = (loginFormData ) => {
 }
 
 export const logout = (id, callback) => {
-    // console.log("logout action", id)
     return dispatch => {
         return fetch(`http://localhost:3000/api/v1/sessions/${id}`, {
             credentials: "include",
@@ -77,10 +75,8 @@ export const logout = (id, callback) => {
             }
         )
             .then(data => {
-                // dispatch(clearReviews())
                 dispatch(resetNewReviewForm())
                 dispatch(clearCurrentUser())
-                // callback()
                 history.push('/')
             })
     }
@@ -98,8 +94,6 @@ export const getCurrentUser = () => {
         .then(response => response.json())
         .then(response => {
             if (response.error) {
-                // alert(response.error)
-                // removes alert box and removes Error warning message in console
                 return null
             } else {
                 dispatch(setCurrentUser(response.data))
