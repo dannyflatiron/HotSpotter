@@ -79,6 +79,7 @@ export const logout = (id, callback) => {
                 dispatch(clearCurrentUser())
                 history.push('/')
             })
+            .catch(console.log)
     }
 }
 
