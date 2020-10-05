@@ -3,7 +3,7 @@
 
 HotSpotter is a React app serviced by an Rails API backend that finds nearby wifi hotspot locations in the NYC area. This app is intended to help students complete their remote learning responsibilities but are hindered by a lack of internet access at home.
 ---
-![HotSpotter Home](https://imgur.com/FFj8YHs)
+![HotSpotter Home](https://github.com/dannyflatiron/react-app/blob/master/public/home.png?raw=true)
 ---
 ![HotSpotter Review View](https://imgur.com/FQjbyjX)
 
