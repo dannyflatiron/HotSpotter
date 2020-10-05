@@ -8,6 +8,7 @@ HotSpotter is a React app serviced by an Rails API backend that finds nearby wif
 ---
 ![HotSpotter Review View](https://github.com/dannyflatiron/react-app/blob/master/frontend/public/review_img.png?raw=true)
 
+
 ---
 
 Some of the features of this app include:
