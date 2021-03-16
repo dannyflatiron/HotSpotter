@@ -54,8 +54,8 @@ class App extends React.Component {
         };
         await this.props.setLocationMarker(currentMarker);
 
-        let a = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.object_id === currentMarker.objectid)
-        a ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
+        let existingReviewedMarker = this.props.reviewedMarkers.find(reviewedMarker => reviewedMarker.object_id === currentMarker.objectid)
+        existingReviewedMarker ? this.props.getMarker(this.state.selectedPlace.objectid) : this.props.clearMarker()
       }
     );
 
